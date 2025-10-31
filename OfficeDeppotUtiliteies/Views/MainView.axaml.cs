@@ -1,21 +1,22 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
+using FluentAvalonia.UI.Controls;
 using OfficeDeppotUtiliteies.ViewModels;
 using PdfSharpCore.Pdf;
 using PdfSharpCore.Pdf.IO;
-using ReactiveUI.Avalonia;
 using ReactiveUI;
+using ReactiveUI.Avalonia;
 using SkiaSharp;
 using System;
 using System.IO;
 using System.IO.Pipes;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Threading.Tasks;
 using System.Reactive.Threading.Tasks;
-using Avalonia.Input;
+using System.Threading.Tasks;
 
 namespace OfficeDeppotUtiliteies.Views
 {
@@ -38,7 +39,8 @@ namespace OfficeDeppotUtiliteies.Views
                 var files = await storage.OpenFilePickerAsync(new FilePickerOpenOptions()
                 {
                     //You can add either custom or from the built-in file types. See "Defining custom file types" on how to create a custom one.
-                    FileTypeFilter = [FilePickerFileTypes.Pdf]
+                    FileTypeFilter = [FilePickerFileTypes.Pdf],
+                    AllowMultiple = true,
                 });
 
                 foreach (var file in files)
@@ -178,6 +180,18 @@ namespace OfficeDeppotUtiliteies.Views
             else
             {
                 Console.WriteLine($"Invalid URL: {url}");
+            }
+        }
+
+        async void DeleteItemFromList(object? sender, TappedEventArgs e)
+        {
+            if(sender is SymbolIcon icon)
+            {
+                var pdf = ViewModel!.ListOfPdfs.First(x => x.PdfId == (int)icon.Tag!);
+                ViewModel!.ListOfPdfs.Remove(pdf);
+
+                if (ViewModel!.ListOfPdfs.Count == 0) 
+                    await ViewModel!.ClearAll.Execute();
             }
         }
     }

@@ -56,7 +56,7 @@
                  <Button HorizontalAlignment="Center" Margin="5 0 0 0" Classes="accent" Click="OpenFile">
 				    <StackPanel Orientation="Horizontal">
 						<ui:SymbolIcon Symbol="OpenFile" FontSize="18" />
-					    <TextBlock Text="Añadir mas archivos"  FontWeight="ExtraBold"/>
+					    <TextBlock Text="Agregar mas archivos"  FontWeight="ExtraBold"/>
                     </StackPanel>
                 </Button>
             </StackPanel>
@@ -65,7 +65,10 @@
                     <ItemsRepeater ItemsSource="{Binding ListOfPdfs}">
                         <ItemsRepeater.ItemTemplate>
                             <DataTemplate>
-                                <local:PdfDataView />
+                                <Grid ColumnDefinitions="*,auto" MaxWidth="450">
+									<local:PdfDataView/>
+                                    <ui:SymbolIcon Grid.Column="1" Symbol="Delete" FontSize="24" Margin="5" Cursor="Hand" Tapped="DeleteItemFromList" Tag="{Binding PdfId}"/> 
+                                </Grid>
                             </DataTemplate>
                         </ItemsRepeater.ItemTemplate>
                     </ItemsRepeater>
@@ -96,7 +99,7 @@
 						<ToggleButton Margin="15"  Click="OnToggleClick" Tag="270">
 							<StackPanel>
 								<ui:SymbolIcon Symbol="RotateCounterClockwise" FontSize="18" />
-                                <TextBlock Text="270°" />
+                                <TextBlock Text="270" />
                             </StackPanel>
                         </ToggleButton>
 
@@ -104,14 +107,14 @@
 							<StackPanel>
                                 <Image Classes="checked" Source="/Assets/half-white.png" Width="18" />
 								<Image Classes="unchecked" Source="/Assets/half.png" Width="18"/>
-                                <TextBlock Text="180°" />
+                                <TextBlock Text="180" />
                             </StackPanel>
                         </ToggleButton>
 
                         <ToggleButton Margin="15"  Click="OnToggleClick" Tag="90" IsChecked="True">
 							<StackPanel>
 								<ui:SymbolIcon Symbol="RotateClockwise" FontSize="18" />
-                                <TextBlock Text="90°" />
+                                <TextBlock Text="90" />
                             </StackPanel>
                         </ToggleButton>
                     </StackPanel>
@@ -124,7 +127,7 @@
 						<ToggleButton Margin="15"  Click="OnToggleClick" Tag="270" IsChecked="True">
 							<StackPanel>
 								<ui:SymbolIcon Symbol="RotateCounterClockwise" FontSize="18" />
-                                <TextBlock Text="270°" />
+                                <TextBlock Text="270" />
                             </StackPanel>
                         </ToggleButton>
 
@@ -132,14 +135,14 @@
 							<StackPanel>
                                 <Image Classes="checked" Source="/Assets/half-white.png" Width="18" />
 								<Image Classes="unchecked" Source="/Assets/half.png" Width="18"/>
-                                <TextBlock Text="180°" />
+                                <TextBlock Text="180" />
                             </StackPanel>
                         </ToggleButton>
 
                         <ToggleButton Margin="15"  Click="OnToggleClick" Tag="90">
 							<StackPanel>
 								<ui:SymbolIcon Symbol="RotateClockwise" FontSize="18" />
-                                <TextBlock Text="90°" />
+                                <TextBlock Text="90" />
                             </StackPanel>
                         </ToggleButton>
                     </StackPanel>

@@ -8,14 +8,12 @@
              x:DataType="vm:PdfDataViewModel"
              x:Class="OfficeDeppotUtiliteies.Views.PdfDataView">
  
-    <Grid ColumnDefinitions="auto, *, auto, auto">
+    <Grid ColumnDefinitions="auto, *, auto">
 		<Image Source="/Assets/pdf.png" Width="24" Margin="5"/>
 
         <StackPanel Grid.Column="1" >
 			<TextBlock Text="{Binding FileName}"/>
             <TextBlock Text="{Binding PageCount}" Foreground="Gray" FontWeight="Bold"/>
         </StackPanel>
-        
-        <ui:SymbolIcon Symbol="Delete" FontSize="24" Grid.Column="3" Margin="5" Cursor="Hand"/> 
     </Grid>
 </UserControl>
