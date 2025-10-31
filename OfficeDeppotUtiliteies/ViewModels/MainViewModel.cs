@@ -1,4 +1,5 @@
 ﻿
+using Avalonia;
 using Avalonia.Controls;
 using PdfSharpCore.Pdf;
 using PdfSharpCore.Pdf.IO;
@@ -15,8 +16,10 @@ public class MainViewModel : ViewModelBase
     public string Copyright { get; } = $"\u00A9 {DateTime.Now.Year} Paulino Angulo Martínez. Todos los derechos Reservados";
     public ReactiveCommand<MemoryStream, MemoryStream?> ChangeRotation { get; set; }
     public ReactiveCommand<Unit, Unit> ClearAll { get; set; }
-
     public ObservableCollection<PdfDataViewModel> ListOfPdfs { get; set; } = [];
+
+    public int evenDegrees { get; set; } = 90;
+    public int oddDegrees { get; set; } = 270;
 
     bool _AreItemsAdded = false;
     public bool AreItemsAdded {
@@ -39,7 +42,7 @@ public class MainViewModel : ViewModelBase
                 for (int i = 0; i < document.Pages.Count; i++)
                 {
                     var page = document.Pages[i];
-                    page.Rotate = (i % 2 == 0) ? 90 : 270;
+                    page.Rotate = (i % 2 == 0) ? evenDegrees : oddDegrees;
                 }
 
                 // Guardar el PDF modificado en el nuevo stream
@@ -55,7 +58,7 @@ public class MainViewModel : ViewModelBase
         ClearAll = ReactiveCommand.Create(() =>
         {
             AreItemsAdded = false;
-            ListOfPdfs.Clear(); 
+            ListOfPdfs.Clear();
 
         });
     }

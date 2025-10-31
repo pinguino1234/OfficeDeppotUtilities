@@ -24,5 +24,7 @@ namespace OfficeDeppotUtiliteies.ViewModels
         }
 
         public MemoryStream? PdfData { get; set; }
+
+        public int PdfId { get; set; }
     }
 }
